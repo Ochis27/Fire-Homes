@@ -1,7 +1,7 @@
 "use client";
 
 import {useAuth} from "@/context/auth";
-import {Link} from "lucide-react";
+import Link from "next/link";
 
 export default function AuthButtons() {
   const auth = useAuth();
@@ -11,7 +11,7 @@ export default function AuthButtons() {
       {!!auth?.currentUser && (
         <>
           <div>{auth.currentUser.email}</div>
-          <div>Logout</div>
+          <div onClick={() => auth.logout()}>Logout</div>
         </>
       )}
       {!auth?.currentUser && (
