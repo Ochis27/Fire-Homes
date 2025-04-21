@@ -9,6 +9,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import {getProperties} from "@/data/properties";
+import {PencilIcon} from "lucide-react";
 import Link from "next/link";
 
 export default async function PropertiesTable({page = 1}: {page?: number}) {
@@ -18,7 +19,6 @@ export default async function PropertiesTable({page = 1}: {page?: number}) {
       pageSize: 2,
     },
   });
-  console.log({data, totalPages});
   return (
     <>
       {!data && (
@@ -51,7 +51,14 @@ export default async function PropertiesTable({page = 1}: {page?: number}) {
                   <TableCell>{address}</TableCell>
                   <TableCell>{property.price}</TableCell>
                   <TableCell>{property.status}</TableCell>
-                  <TableCell>view / edit</TableCell>
+                  <TableCell>
+                    view /{" "}
+                    <Button asChild variant="outline" size="sm">
+                      <Link href={`/admin-dashboard/edit/${property.id}`}>
+                        <PencilIcon />
+                      </Link>
+                    </Button>{" "}
+                  </TableCell>
                 </TableRow>
               );
             })}
